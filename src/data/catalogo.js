@@ -10,6 +10,7 @@ const montarCena = (curado, repo) => {
     toy: curado.toy,
     dificuldade: curado.dificuldade,
     tecnologias: curado.tecnologias ?? [],
+    telas: curado.telas ?? [],
     privado,
     repoUrl: privado ? null : (repo?.url ?? null),
     siteUrl: textoOuNulo(curado.siteUrl) ?? (privado ? null : textoOuNulo(repo?.homepage)),

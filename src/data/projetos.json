@@ -7,29 +7,66 @@
     "cor": "#7c8cff",
     "toy": "formas",
     "dificuldade": 1,
-    "tecnologias": ["React", "CSS Modules", "Vite"]
+    "tecnologias": [
+      "React",
+      "CSS Modules",
+      "Vite"
+    ]
   },
   {
     "id": "meu-dinheirinho",
     "repo": "meu-dinheirinho",
     "privado": true,
     "titulo": "Meu Dinheirinho",
-    "texto": "Projeto pessoal em construção.",
-    "cor": "#3ddc97",
-    "toy": "formas",
+    "texto": "App de controle financeiro: contas e cartões, lançamentos, contas fixas, desafios e relatório do mês.",
+    "cor": "#f6c744",
+    "toy": "telas",
     "dificuldade": 2,
-    "tecnologias": []
+    "tecnologias": [
+      "React",
+      "Vite",
+      "Firebase"
+    ],
+    "telas": [
+      {
+        "src": "/telas/meu-dinheirinho-1.jpg",
+        "alt": "Tela inicial com o saldo total e a pilha de cartões das contas"
+      },
+      {
+        "src": "/telas/meu-dinheirinho-2.jpg",
+        "alt": "Tela de novo lançamento, com escolha de conta e categoria"
+      },
+      {
+        "src": "/telas/meu-dinheirinho-3.jpg",
+        "alt": "Tela de contas, com o cartão da conta e o resumo do mês"
+      }
+    ]
   },
   {
     "id": "assistente-mari",
     "repo": "assistente-mari",
     "privado": true,
     "titulo": "Assistente Mari",
-    "texto": "Projeto pessoal em construção.",
-    "cor": "#ff5fa2",
-    "toy": "formas",
+    "texto": "App pessoal de rotina, com tarefas, calendário, academia, estudos e diário.",
+    "cor": "#6cb2f0",
+    "toy": "telas",
     "dificuldade": 3,
-    "tecnologias": []
+    "tecnologias": [
+      "React",
+      "Vite",
+      "Firebase",
+      "PWA"
+    ],
+    "telas": [
+      {
+        "src": "/telas/assistente-mari-1.jpg",
+        "alt": "Tela inicial com saudação, frase do dia, compromissos, tarefas e foto de gatinho"
+      },
+      {
+        "src": "/telas/assistente-mari-2.jpg",
+        "alt": "Tela de academia, com a semana, check-in de treino e cronômetro de descanso"
+      }
+    ]
   },
   {
     "id": "gaucho-express",
@@ -39,7 +76,11 @@
     "cor": "#e63946",
     "toy": "formas",
     "dificuldade": 4,
-    "tecnologias": ["React", "Firebase", "Vercel"]
+    "tecnologias": [
+      "React",
+      "Firebase",
+      "Vercel"
+    ]
   },
   {
     "id": "linhas",
@@ -50,7 +91,12 @@
     "toy": "linhas",
     "dificuldade": 5,
     "siteUrl": "https://linhas.vercel.app",
-    "tecnologias": ["Astro", "GSAP", "Lenis", "WebGL"]
+    "tecnologias": [
+      "Astro",
+      "GSAP",
+      "Lenis",
+      "WebGL"
+    ]
   },
   {
     "id": "perfil",

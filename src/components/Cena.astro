@@ -6,6 +6,7 @@ type Cena = {
   cor: string;
   toy: string;
   tecnologias: string[];
+  telas: { src: string; alt: string }[];
   privado: boolean;
   repoUrl: string | null;
   siteUrl: string | null;
@@ -59,7 +60,7 @@ const palavras = cena.titulo.split(' ');
       aria-label={`Brinquedo do projeto ${cena.titulo}`}
     >
       <span class="fase">Fase {indice + 1}</span>
-      <div class="brinquedo" data-brinquedo></div>
+      <div class="brinquedo" data-brinquedo data-telas={JSON.stringify(cena.telas)}></div>
     </div>
   </div>
 </section>

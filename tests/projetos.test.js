@@ -39,3 +39,20 @@ test('toda cena tem cor hexadecimal valida', () => {
   const { cenas } = buildCatalog(cache, projetos);
   for (const cena of cenas) assert.match(cena.cor, /^#[0-9a-f]{6}$/i);
 });
+
+test('meu-dinheirinho tem tres telas com texto alternativo', () => {
+  const { cenas } = buildCatalog(cache, projetos);
+  const cena = cenas.find((c) => c.id === 'meu-dinheirinho');
+  assert.equal(cena.toy, 'telas');
+  assert.equal(cena.telas.length, 3);
+  for (const tela of cena.telas) {
+    assert.match(tela.src, /^\/telas\/.+\.jpg$/);
+    assert.ok(tela.alt.length > 10);
+  }
+});
+
+test('cenas sem telas recebem lista vazia', () => {
+  const { cenas } = buildCatalog(cache, projetos);
+  const cena = cenas.find((c) => c.id === 'linhas');
+  assert.deepEqual(cena.telas, []);
+});

@@ -14,3 +14,8 @@ test('obterToy devolve uma funcao de montar', () => {
   assert.equal(typeof obterToy('linhas'), 'function');
   assert.equal(typeof obterToy('formas'), 'function');
 });
+
+test('toy telas e um brinquedo proprio', () => {
+  assert.notEqual(obterToy('telas'), obterToy('formas'));
+  assert.equal(typeof obterToy('telas'), 'function');
+});
