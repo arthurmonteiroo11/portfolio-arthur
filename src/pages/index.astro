@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import Abertura from '../components/Abertura.astro';
+import Arquivo from '../components/Arquivo.astro';
 import Cena from '../components/Cena.astro';
+import FimDeJogo from '../components/FimDeJogo.astro';
 import Hud from '../components/Hud.astro';
 import { fetchPublicRepos } from '../data/github.js';
 import { buildCatalog } from '../data/catalogo.js';
@@ -17,6 +19,8 @@ const { cenas, arquivo } = buildCatalog(repos, projetos);
   <main>
     <Abertura />
     {cenas.map((cena, indice) => <Cena cena={cena} indice={indice} />)}
+    <Arquivo itens={arquivo} />
+    <FimDeJogo contato={contato} />
   </main>
 </Base>
 
@@ -25,5 +29,8 @@ const { cenas, arquivo } = buildCatalog(repos, projetos);
   import { initScenes } from '../scripts/scenes.js';
 
   initScroll();
-  initScenes(Array.from(document.querySelectorAll('[data-cena]')));
+  initScenes(
+    Array.from(document.querySelectorAll('[data-cena]')),
+    document.querySelector('[data-fim]'),
+  );
 </script>

@@ -1,0 +1,117 @@
+---
+type Item = {
+  nome: string;
+  descricao: string;
+  linguagem: string;
+  url: string;
+  siteUrl: string | null;
+};
+
+type Props = {
+  itens: Item[];
+};
+
+const { itens } = Astro.props;
+---
+
+{itens.length > 0 && (
+  <section class="arquivo" aria-labelledby="titulo-arquivo">
+    <h2 id="titulo-arquivo">Arquivo</h2>
+    <p class="apoio">Outros repositórios públicos, fora das fases principais.</p>
+    <ul class="lista">
+      {itens.map((item) => (
+        <li>
+          <a class="linha" href={item.url} target="_blank" rel="noopener">
+            <span class="nome">{item.nome}</span>
+            <span class="descricao">{item.descricao}</span>
+            <span class="linguagem">{item.linguagem}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .arquivo {
+    width: min(100%, 78rem);
+    margin-inline: auto;
+    padding: var(--espaco-5) var(--espaco-3);
+  }
+
+  h2 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+  }
+
+  .apoio {
+    margin-top: var(--espaco-2);
+    color: var(--texto-suave);
+  }
+
+  .lista {
+    margin: var(--espaco-4) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--linha);
+  }
+
+  .linha {
+    position: relative;
+    display: grid;
+    gap: 0.25rem 1.5rem;
+    padding: 1.1rem 0.5rem;
+    border-bottom: 1px solid var(--linha);
+    text-decoration: none;
+    transition: padding-left 0.3s var(--ease-saida), background-color 0.3s;
+  }
+
+  .linha::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: var(--destaque);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.3s var(--ease-saida);
+  }
+
+  .linha:hover,
+  .linha:focus-visible {
+    padding-left: 1.5rem;
+    background: color-mix(in srgb, var(--destaque) 8%, transparent);
+  }
+
+  .linha:hover::before,
+  .linha:focus-visible::before {
+    transform: scaleY(1);
+  }
+
+  .nome {
+    font-family: var(--fonte-titulo);
+    font-size: 1.375rem;
+    font-weight: 700;
+  }
+
+  .descricao {
+    color: var(--texto-suave);
+  }
+
+  .linguagem {
+    color: var(--destaque);
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 800px) {
+    .linha {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) 8rem;
+      align-items: baseline;
+    }
+
+    .linguagem {
+      text-align: right;
+    }
+  }
+</style>

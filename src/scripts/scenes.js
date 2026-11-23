@@ -45,14 +45,38 @@ const ligarBrinquedo = (cena) => {
   observador.observe(cena);
 };
 
-export const initScenes = (cenas) => {
+const ligarFim = (fim, total, marcar, animar) => {
+  const entradas = fim.querySelectorAll('[data-fim-entrada]');
+  if (animar) gsap.set(entradas, { y: 32, opacity: 0 });
+
+  ScrollTrigger.create({
+    trigger: fim,
+    start: 'top 55%',
+    end: 'bottom top',
+    onEnter: () => marcar(total + 1),
+    onEnterBack: () => marcar(total + 1),
+    onLeaveBack: () => marcar(total),
+  });
+
+  if (!animar) return;
+  ScrollTrigger.create({
+    trigger: fim,
+    start: 'top 65%',
+    once: true,
+    onEnter: () =>
+      gsap.to(entradas, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' }),
+  });
+};
+
+export const initScenes = (cenas, fim = null) => {
   const total = cenas.length;
   const cores = cenas.map(corDaCena);
   const animar = !prefersReducedMotion();
 
   const marcar = (fase) => {
     setHud(fase, total);
-    document.documentElement.style.setProperty('--destaque', fase === 0 ? COR_PADRAO : cores[fase - 1]);
+    const foraDasFases = fase === 0 || fase > total;
+    document.documentElement.style.setProperty('--destaque', foraDasFases ? COR_PADRAO : cores[fase - 1]);
   };
 
   cenas.forEach((cena, indice) => {
@@ -70,4 +94,6 @@ export const initScenes = (cenas) => {
     });
     ligarBrinquedo(cena);
   });
+
+  if (fim) ligarFim(fim, total, marcar, animar);
 };

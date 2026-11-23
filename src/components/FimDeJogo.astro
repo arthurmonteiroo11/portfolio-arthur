@@ -1,0 +1,139 @@
+---
+import { semProtocolo } from '../data/formatar.js';
+
+type Contato = {
+  github: string;
+  linkedin: string;
+  email: string;
+};
+
+type Props = {
+  contato: Contato;
+};
+
+const { contato } = Astro.props;
+
+const canais = [
+  { nome: 'GitHub', href: contato.github, texto: semProtocolo(contato.github), externo: true },
+  { nome: 'LinkedIn', href: contato.linkedin, texto: semProtocolo(contato.linkedin), externo: true },
+  { nome: 'E-mail', href: `mailto:${contato.email}`, texto: contato.email, externo: false },
+];
+---
+
+<section class="fim" data-fim aria-labelledby="titulo-fim">
+  <div class="miolo">
+    <h2 id="titulo-fim" data-fim-entrada>Fim de jogo</h2>
+    <p class="agradecimento" data-fim-entrada>
+      Obrigado por chegar até aqui. Se alguma fase te chamou atenção, vamos conversar.
+    </p>
+    <ul class="canais" data-fim-entrada>
+      {canais.map((canal) => (
+        <li>
+          <a
+            class="canal"
+            href={canal.href}
+            {...(canal.externo ? { target: '_blank', rel: 'noopener' } : {})}
+          >
+            <span class="rotulo">{canal.nome}</span>
+            <span class="endereco">{canal.texto}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <button class="voltar" type="button" data-voltar data-fim-entrada>Voltar ao início</button>
+  </div>
+</section>
+
+<script>
+  import { scrollParaTopo } from '../scripts/scroll.js';
+
+  document.querySelector('[data-voltar]')?.addEventListener('click', scrollParaTopo);
+</script>
+
+<style>
+  .fim {
+    display: grid;
+    align-items: center;
+    min-height: 100svh;
+    padding: 6rem var(--espaco-3) var(--espaco-5);
+  }
+
+  .miolo {
+    display: grid;
+    gap: var(--espaco-3);
+    justify-items: start;
+    width: min(100%, 78rem);
+    margin-inline: auto;
+  }
+
+  h2 {
+    color: var(--destaque);
+    font-size: clamp(3rem, 12vw, 9rem);
+    line-height: 0.92;
+  }
+
+  .agradecimento {
+    max-width: 38ch;
+    color: var(--texto-suave);
+    font-size: 1.1875rem;
+  }
+
+  .canais {
+    width: 100%;
+    margin: var(--espaco-2) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--linha);
+  }
+
+  .canal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.1rem 0.5rem;
+    border-bottom: 1px solid var(--linha);
+    text-decoration: none;
+    transition: padding-left 0.3s var(--ease-saida), background-color 0.3s;
+  }
+
+  .canal:hover,
+  .canal:focus-visible {
+    padding-left: 1.5rem;
+    background: color-mix(in srgb, var(--destaque) 10%, transparent);
+  }
+
+  .rotulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.375rem;
+    font-weight: 700;
+  }
+
+  .endereco {
+    color: var(--texto-suave);
+    overflow-wrap: anywhere;
+  }
+
+  .voltar {
+    margin-top: var(--espaco-2);
+    padding: 0.85rem 1.5rem;
+    border: 2px solid var(--destaque);
+    border-radius: var(--raio);
+    background: transparent;
+    color: var(--destaque);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s var(--ease-saida);
+  }
+
+  .voltar:hover {
+    background: var(--destaque);
+    color: var(--fundo);
+  }
+
+  .voltar:active {
+    transform: scale(0.96);
+  }
+</style>
