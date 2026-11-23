@@ -1,0 +1,61 @@
+[
+  {
+    "id": "minimal-design-system",
+    "repo": "minimal-design-system",
+    "titulo": "Minimal Design System",
+    "texto": "Biblioteca de componentes React para interfaces escuras, com vidro sutil e microinterações.",
+    "cor": "#7c8cff",
+    "toy": "formas",
+    "dificuldade": 1,
+    "tecnologias": ["React", "CSS Modules", "Vite"]
+  },
+  {
+    "id": "meu-dinheirinho",
+    "repo": "meu-dinheirinho",
+    "privado": true,
+    "titulo": "Meu Dinheirinho",
+    "texto": "Projeto pessoal em construção. O código fica privado.",
+    "cor": "#3ddc97",
+    "toy": "formas",
+    "dificuldade": 2,
+    "tecnologias": []
+  },
+  {
+    "id": "assistente-mari",
+    "repo": "assistente-mari",
+    "privado": true,
+    "titulo": "Assistente Mari",
+    "texto": "Projeto pessoal em construção. O código fica privado.",
+    "cor": "#ff5fa2",
+    "toy": "formas",
+    "dificuldade": 3,
+    "tecnologias": []
+  },
+  {
+    "id": "gaucho-express",
+    "repo": "gaucho-express-project",
+    "titulo": "Gaúcho Express",
+    "texto": "Sistema de gestão para restaurante, com cardápio, pedidos e painel em tempo real.",
+    "cor": "#e63946",
+    "toy": "formas",
+    "dificuldade": 4,
+    "tecnologias": ["React", "Firebase", "Vercel"]
+  },
+  {
+    "id": "linhas",
+    "repo": "linhas",
+    "titulo": "Linhas",
+    "texto": "A história do Metrô de São Paulo contada pelo scroll: cada linha se desenha no mapa no ano em que abriu.",
+    "cor": "#ff7a1a",
+    "toy": "linhas",
+    "dificuldade": 5,
+    "siteUrl": "https://linhas.vercel.app",
+    "tecnologias": ["Astro", "GSAP", "Lenis", "WebGL"]
+  },
+  {
+    "id": "perfil",
+    "repo": "arthurmonteiroo11",
+    "oculto": true,
+    "dificuldade": 0
+  }
+]
