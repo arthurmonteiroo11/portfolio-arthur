@@ -1,0 +1,238 @@
+---
+type Cena = {
+  id: string;
+  titulo: string;
+  texto: string;
+  cor: string;
+  toy: string;
+  tecnologias: string[];
+  privado: boolean;
+  repoUrl: string | null;
+  siteUrl: string | null;
+};
+
+type Props = {
+  cena: Cena;
+  indice: number;
+};
+
+const { cena, indice } = Astro.props;
+const palavras = cena.titulo.split(' ');
+---
+
+<section
+  class="cena"
+  data-cena
+  data-id={cena.id}
+  style={`--cor:${cena.cor}`}
+  aria-labelledby={`titulo-${cena.id}`}
+>
+  <div class="grade">
+    <div class="info">
+      <h2 class="titulo" id={`titulo-${cena.id}`}>
+        {palavras.map((palavra) => (
+          <span class="caixa-palavra"><span class="palavra" data-palavra>{palavra}</span></span>
+        ))}
+      </h2>
+      <p class="texto" data-entrada>{cena.texto}</p>
+      {cena.tecnologias.length > 0 && (
+        <ul class="tecnologias" data-entrada>
+          {cena.tecnologias.map((tecnologia) => <li>{tecnologia}</li>)}
+        </ul>
+      )}
+      <div class="acoes" data-entrada>
+        {cena.siteUrl && (
+          <a class="botao principal" href={cena.siteUrl} target="_blank" rel="noopener">Ver site</a>
+        )}
+        {cena.repoUrl && (
+          <a class="botao" href={cena.repoUrl} target="_blank" rel="noopener">Ver código</a>
+        )}
+        {cena.privado && <p class="nota">Código privado</p>}
+      </div>
+    </div>
+    <div
+      class="palco"
+      data-palco
+      data-toy={cena.toy}
+      data-cor={cena.cor}
+      role="group"
+      aria-label={`Brinquedo do projeto ${cena.titulo}`}
+    >
+      <span class="fase">Fase {indice + 1}</span>
+      <div class="brinquedo" data-brinquedo></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cena {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 100svh;
+    padding: 5.5rem var(--espaco-3) var(--espaco-4);
+  }
+
+  .grade {
+    display: grid;
+    gap: var(--espaco-4);
+    align-items: center;
+    width: min(100%, 78rem);
+    margin-inline: auto;
+  }
+
+  .info {
+    display: grid;
+    gap: var(--espaco-3);
+    justify-items: start;
+    min-width: 0;
+  }
+
+  .titulo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.28em;
+    font-size: clamp(2.4rem, min(6vw, 9svh), 5.5rem);
+  }
+
+  .caixa-palavra {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+
+  .palavra {
+    display: inline-block;
+  }
+
+  .texto {
+    max-width: 34ch;
+    color: var(--texto-suave);
+    font-size: 1.1875rem;
+  }
+
+  .tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tecnologias li {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--cor) 55%, transparent);
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+
+  .acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .botao {
+    padding: 0.8rem 1.4rem;
+    border: 2px solid var(--cor);
+    border-radius: var(--raio);
+    color: var(--texto);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s var(--ease-saida);
+  }
+
+  .botao:hover {
+    background: color-mix(in srgb, var(--cor) 22%, transparent);
+  }
+
+  .botao:active {
+    transform: scale(0.96);
+  }
+
+  .botao.principal {
+    background: var(--cor);
+    color: var(--fundo);
+  }
+
+  .botao.principal:hover {
+    background: color-mix(in srgb, var(--cor) 85%, white);
+  }
+
+  .nota {
+    color: var(--texto-suave);
+    font-size: 0.9375rem;
+  }
+
+  .palco {
+    position: relative;
+    min-height: 30svh;
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+    background: color-mix(in srgb, var(--cor) 9%, var(--superficie));
+    overflow: hidden;
+  }
+
+  .palco::before,
+  .palco::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 3px solid var(--cor);
+    pointer-events: none;
+  }
+
+  .palco::before {
+    top: 10px;
+    left: 10px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .palco::after {
+    right: 10px;
+    bottom: 10px;
+    border-top: 0;
+    border-left: 0;
+  }
+
+  .fase {
+    position: absolute;
+    top: 0.9rem;
+    right: 1.1rem;
+    z-index: 1;
+    color: var(--cor);
+    font-size: 0.875rem;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .brinquedo {
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (max-width: 899px) {
+    .palco {
+      order: -1;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .cena {
+      padding: 6rem var(--espaco-4) var(--espaco-4);
+    }
+
+    .grade {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: var(--espaco-5);
+    }
+
+    .palco {
+      min-height: min(62svh, 34rem);
+    }
+  }
+</style>

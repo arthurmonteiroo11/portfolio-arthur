@@ -1,9 +1,29 @@
 ---
 import Base from '../layouts/Base.astro';
+import Abertura from '../components/Abertura.astro';
+import Cena from '../components/Cena.astro';
+import Hud from '../components/Hud.astro';
+import { fetchPublicRepos } from '../data/github.js';
+import { buildCatalog } from '../data/catalogo.js';
+import projetos from '../data/projetos.json';
+import contato from '../data/contato.json';
+
+const repos = await fetchPublicRepos('arthurmonteiroo11');
+const { cenas, arquivo } = buildCatalog(repos, projetos);
 ---
 
 <Base>
+  <Hud />
   <main>
-    <h1 style="padding: var(--espaco-5) var(--espaco-3); font-size: clamp(3rem, 12vw, 9rem);">TheKingArthur</h1>
+    <Abertura />
+    {cenas.map((cena, indice) => <Cena cena={cena} indice={indice} />)}
   </main>
 </Base>
+
+<script>
+  import { initScroll } from '../scripts/scroll.js';
+  import { initScenes } from '../scripts/scenes.js';
+
+  initScroll();
+  initScenes(Array.from(document.querySelectorAll('[data-cena]')));
+</script>
