@@ -43,5 +43,4 @@ src/
   scripts/      scroll.js, hud.js, scenes.js, opening/, toys/
   styles/       tokens.css, base.css, toys.css
 tests/
-docs/           design e plano de construção
 ```
