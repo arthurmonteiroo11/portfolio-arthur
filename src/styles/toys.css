@@ -1,0 +1,71 @@
+@layer componentes {
+  .toy-tela,
+  .toy-svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+  }
+
+  .toy-vagao {
+    cursor: grab;
+    touch-action: none;
+    outline: none;
+  }
+
+  .toy-vagao:active {
+    cursor: grabbing;
+  }
+
+  .toy-vagao:focus-visible .toy-aura {
+    fill-opacity: 0.7;
+  }
+
+  .toy-ano {
+    position: absolute;
+    top: 0.7rem;
+    left: 1.25rem;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .toy-dica {
+    position: absolute;
+    bottom: 0.9rem;
+    left: 1.25rem;
+    color: var(--texto-suave);
+    font-size: 0.875rem;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease-saida);
+  }
+
+  .toy-dica[data-oculta='true'] {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .toy-vagao[data-dica='on'] .toy-aura {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: toy-pulso 1.8s var(--ease-saida) infinite;
+    }
+  }
+
+  @keyframes toy-pulso {
+    from {
+      transform: scale(0.7);
+      opacity: 1;
+    }
+    to {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+}
