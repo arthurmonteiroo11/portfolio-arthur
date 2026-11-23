@@ -1,0 +1,21 @@
+@layer tokens, base, componentes;
+
+@layer tokens {
+  :root {
+    --fundo: #0d0e12;
+    --superficie: #171922;
+    --linha: #2a2d3a;
+    --texto: #f2efe8;
+    --texto-suave: #a3a4b0;
+    --destaque: #ffb347;
+    --fonte-titulo: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+    --fonte-texto: 'DM Sans Variable', system-ui, sans-serif;
+    --espaco-1: 0.5rem;
+    --espaco-2: 1rem;
+    --espaco-3: 1.5rem;
+    --espaco-4: 2.5rem;
+    --espaco-5: 4rem;
+    --raio: 14px;
+    --ease-saida: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
