@@ -56,3 +56,16 @@ test('cenas sem telas recebem lista vazia', () => {
   const cena = cenas.find((c) => c.id === 'linhas');
   assert.deepEqual(cena.telas, []);
 });
+
+test('gaucho-express mostra duas telas em formato de janela', () => {
+  const { cenas } = buildCatalog(cache, projetos);
+  const cena = cenas.find((c) => c.id === 'gaucho-express');
+  assert.equal(cena.toy, 'telas');
+  assert.equal(cena.formato, 'janela');
+  assert.equal(cena.telas.length, 2);
+});
+
+test('cenas com telas de celular usam o formato celular', () => {
+  const { cenas } = buildCatalog(cache, projetos);
+  assert.equal(cenas.find((c) => c.id === 'meu-dinheirinho').formato, 'celular');
+});

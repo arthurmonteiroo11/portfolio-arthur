@@ -1,7 +1,9 @@
 import { posicaoNaPilha, proximoIndice } from './pilha.js';
 
-const LARGURA_IMAGEM = 540;
-const ALTURA_IMAGEM = 1053;
+const DIMENSOES = {
+  celular: [540, 1053],
+  janela: [960, 477],
+};
 
 const lerTelas = (el) => {
   try {
@@ -12,14 +14,14 @@ const lerTelas = (el) => {
   }
 };
 
-const criarCelular = ({ src, alt }) => {
+const criarCelular = ({ src, alt }, [largura, altura]) => {
   const celular = document.createElement('div');
   celular.className = 'toy-celular';
   const imagem = document.createElement('img');
   imagem.src = src;
   imagem.alt = '';
-  imagem.width = LARGURA_IMAGEM;
-  imagem.height = ALTURA_IMAGEM;
+  imagem.width = largura;
+  imagem.height = altura;
   imagem.decoding = 'async';
   imagem.draggable = false;
   celular.append(imagem);
@@ -31,13 +33,15 @@ export const montarTelas = (el) => {
   const telas = lerTelas(el);
   if (telas.length === 0) return () => {};
 
+  const formato = Object.hasOwn(DIMENSOES, el.dataset.formato) ? el.dataset.formato : 'celular';
   const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const raiz = document.createElement('div');
   raiz.className = 'toy-telas';
+  raiz.dataset.formato = formato;
 
   const pilha = document.createElement('div');
   pilha.className = 'toy-pilha';
-  const celulares = telas.map(criarCelular);
+  const celulares = telas.map((tela) => criarCelular(tela, DIMENSOES[formato]));
   pilha.append(...celulares);
 
   const botao = document.createElement('button');

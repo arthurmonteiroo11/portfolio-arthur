@@ -74,12 +74,23 @@
     "titulo": "Gaúcho Express",
     "texto": "Sistema de gestão para restaurante, com cardápio, pedidos e painel em tempo real.",
     "cor": "#e63946",
-    "toy": "formas",
+    "toy": "telas",
     "dificuldade": 4,
     "tecnologias": [
       "React",
       "Firebase",
       "Vercel"
+    ],
+    "formatoTelas": "janela",
+    "telas": [
+      {
+        "src": "/telas/gaucho-express-1.jpg",
+        "alt": "Centro de operações, com pedidos em aberto, fila de espera, mesas ocupadas e volume de pedidos por hora"
+      },
+      {
+        "src": "/telas/gaucho-express-2.jpg",
+        "alt": "Comanda operacional, com o cardápio por categoria e o resumo da mesa para enviar à cozinha"
+      }
     ]
   },
   {

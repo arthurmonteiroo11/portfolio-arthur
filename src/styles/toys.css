@@ -102,6 +102,24 @@
     filter: brightness(0.55);
   }
 
+  .toy-telas[data-formato='janela'] .toy-pilha {
+    width: min(86%, 46rem);
+    height: auto;
+    aspect-ratio: 960 / 477;
+  }
+
+  .toy-telas[data-formato='janela'] .toy-celular {
+    border-radius: 10px;
+  }
+
+  .toy-telas[data-formato='janela'] .toy-celular[data-pos='1'] {
+    transform: translate(7%, 16%) rotate(2deg) scale(0.94);
+  }
+
+  .toy-telas[data-formato='janela'] .toy-celular[data-pos='2'] {
+    transform: translate(-7%, 20%) rotate(-2deg) scale(0.88);
+  }
+
   .toy-telas-botao {
     position: absolute;
     inset: 0;
@@ -121,9 +139,13 @@
       place-items: start center;
     }
 
-    .toy-pilha {
+    .toy-telas[data-formato='celular'] .toy-pilha {
       height: 130%;
       margin-top: 2.4rem;
+    }
+
+    .toy-telas[data-formato='janela'] .toy-pilha {
+      margin-top: 3rem;
     }
   }
 
