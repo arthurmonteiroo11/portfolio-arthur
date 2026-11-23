@@ -1,0 +1,40 @@
+---
+---
+
+<div class="hud" aria-hidden="true">
+  <span class="rotulo">Fase</span>
+  <span class="valor" data-hud-valor>Início</span>
+</div>
+
+<style>
+  .hud {
+    position: fixed;
+    top: var(--espaco-3);
+    right: var(--espaco-3);
+    z-index: 50;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--linha);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--fundo) 70%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 0.875rem;
+    pointer-events: none;
+    transition: border-color 0.4s var(--ease-saida);
+  }
+
+  .rotulo {
+    color: var(--texto-suave);
+  }
+
+  .valor {
+    min-width: 4.5ch;
+    color: var(--destaque);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    transition: color 0.4s var(--ease-saida);
+  }
+</style>
