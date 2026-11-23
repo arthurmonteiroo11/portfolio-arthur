@@ -80,7 +80,7 @@ export const initScenes = (cenas, fim = null) => {
   };
 
   cenas.forEach((cena, indice) => {
-    ScrollTrigger.create({
+    const gatilho = ScrollTrigger.create({
       trigger: cena,
       start: animar ? 'top top' : 'top center',
       end: animar ? '+=85%' : 'bottom center',
@@ -92,6 +92,11 @@ export const initScenes = (cenas, fim = null) => {
       onEnterBack: () => marcar(indice + 1),
       onLeaveBack: () => marcar(indice),
     });
+    if (animar) {
+      cena.addEventListener('focusin', () => {
+        if (window.scrollY < gatilho.end) window.scrollTo({ top: gatilho.end, behavior: 'instant' });
+      });
+    }
     ligarBrinquedo(cena);
   });
 

@@ -271,6 +271,8 @@ export const montarLinhas = (el) => {
     esconderDica();
   };
 
+  const aoTocar = (evento) => evento.preventDefault();
+  vagao.addEventListener('touchstart', aoTocar, { passive: false });
   vagao.addEventListener('pointerdown', aoPressionar);
   vagao.addEventListener('pointermove', aoArrastar);
   vagao.addEventListener('pointerup', aoSoltar);
@@ -279,6 +281,7 @@ export const montarLinhas = (el) => {
   atualizar(0);
 
   return () => {
+    vagao.removeEventListener('touchstart', aoTocar);
     vagao.removeEventListener('pointerdown', aoPressionar);
     vagao.removeEventListener('pointermove', aoArrastar);
     vagao.removeEventListener('pointerup', aoSoltar);

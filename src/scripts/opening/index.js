@@ -1,6 +1,7 @@
 import { textToPoints } from './points.js';
 import { stepParticles } from './physics.js';
 import { criarRenderizador } from './gl.js';
+import { criarControleDeContexto } from './contexto.js';
 
 const DPR_MAXIMO = 1.5;
 const MAXIMO_DESKTOP = 5500;
@@ -96,12 +97,14 @@ export const startOpening = (canvas, nome) => {
   let visivel = true;
   let temporizador = 0;
 
-  const rodando = () => !destruido && visivel && !document.hidden;
+  const contexto = criarControleDeContexto();
+
+  const rodando = () => !destruido && visivel && !document.hidden && contexto.podeRodar();
 
   const construir = async () => {
     await document.fonts.ready;
     await document.fonts.load('800 100px "Bricolage Grotesque Variable"');
-    if (destruido) return;
+    if (destruido || gl.isContextLost()) return;
 
     const cssLargura = Math.max(1, Math.round(canvas.clientWidth));
     const cssAltura = Math.max(1, Math.round(canvas.clientHeight));
@@ -175,6 +178,7 @@ export const startOpening = (canvas, nome) => {
 
   const aoPerderContexto = (evento) => {
     evento.preventDefault();
+    contexto.perder();
     canvas.dataset.estado = 'inativo';
     if (quadro) cancelAnimationFrame(quadro);
     quadro = 0;
@@ -182,6 +186,7 @@ export const startOpening = (canvas, nome) => {
 
   const aoRestaurarContexto = () => {
     renderizador = criarRenderizador(gl);
+    contexto.restaurar(Boolean(renderizador));
     if (renderizador) construir();
   };
 
