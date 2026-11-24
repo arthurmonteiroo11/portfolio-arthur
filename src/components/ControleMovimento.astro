@@ -1,0 +1,54 @@
+---
+---
+
+<button class="controle" type="button" data-controle-movimento hidden aria-pressed="false"></button>
+
+<script>
+  import { animacoesForcadas, forcarAnimacoes, sistemaPedeReduzir } from '../scripts/movimento.js';
+
+  const botao = document.querySelector('[data-controle-movimento]');
+
+  if (botao instanceof HTMLButtonElement && sistemaPedeReduzir()) {
+    const forcado = animacoesForcadas();
+    if (forcado) document.documentElement.dataset.animacoes = 'forcadas';
+    botao.hidden = false;
+    botao.setAttribute('aria-pressed', String(forcado));
+    botao.textContent = forcado ? 'Reduzir movimento' : 'Ativar animações';
+    botao.addEventListener('click', () => {
+      forcarAnimacoes(!forcado);
+      window.location.reload();
+    });
+  }
+</script>
+
+<style>
+  .controle {
+    position: fixed;
+    bottom: var(--espaco-3);
+    left: var(--espaco-3);
+    z-index: 50;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--linha);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--fundo) 80%, transparent);
+    color: var(--texto);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .controle:hover {
+    border-color: var(--destaque);
+  }
+
+  .controle:focus-visible {
+    outline: 3px solid var(--destaque);
+    outline-offset: 3px;
+  }
+
+  .controle[hidden] {
+    display: none;
+  }
+</style>

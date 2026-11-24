@@ -1,3 +1,4 @@
+import { movimentoReduzido } from '../movimento.js';
 import { posicaoNaPilha, proximoIndice } from './pilha.js';
 
 const DIMENSOES = {
@@ -34,7 +35,7 @@ export const montarTelas = (el) => {
   if (telas.length === 0) return () => {};
 
   const formato = Object.hasOwn(DIMENSOES, el.dataset.formato) ? el.dataset.formato : 'celular';
-  const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduzir = movimentoReduzido();
   const raiz = document.createElement('div');
   raiz.className = 'toy-telas';
   raiz.dataset.formato = formato;

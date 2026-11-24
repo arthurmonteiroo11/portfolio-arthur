@@ -5,6 +5,7 @@ import Arquivo from '../components/Arquivo.astro';
 import Cena from '../components/Cena.astro';
 import FimDeJogo from '../components/FimDeJogo.astro';
 import Hud from '../components/Hud.astro';
+import ControleMovimento from '../components/ControleMovimento.astro';
 import { fetchPublicRepos } from '../data/github.js';
 import { buildCatalog } from '../data/catalogo.js';
 import projetos from '../data/projetos.json';
@@ -16,6 +17,7 @@ const { cenas, arquivo } = buildCatalog(repos, projetos);
 
 <Base>
   <Hud />
+  <ControleMovimento />
   <main>
     <Abertura />
     {cenas.map((cena, indice) => <Cena cena={cena} indice={indice} />)}

@@ -69,9 +69,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    :root:not([data-animacoes]) *,
+    :root:not([data-animacoes]) *::before,
+    :root:not([data-animacoes]) *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }

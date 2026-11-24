@@ -1,3 +1,4 @@
+import { movimentoReduzido } from './movimento.js';
 export const formatarProgresso = (indice, total) => {
   if (indice <= 0) return 'Início';
   if (indice > total) return 'Fim de jogo';
@@ -10,7 +11,7 @@ export const setHud = (indice, total) => {
   const texto = formatarProgresso(indice, total);
   if (valor.textContent === texto) return;
   valor.textContent = texto;
-  const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduzido = movimentoReduzido();
   if (reduzido) return;
   valor.animate(
     [

@@ -1,3 +1,4 @@
+import { movimentoReduzido } from '../movimento.js';
 const QUANTIDADE = 34;
 const TIPOS = ['circulo', 'quadrado', 'triangulo'];
 const DPR_MAXIMO = 1.5;
@@ -46,7 +47,7 @@ const desenharForma = (ctx, forma, cor) => {
 
 export const montarFormas = (el) => {
   const cor = getComputedStyle(el).getPropertyValue('--cor').trim() || '#ffb347';
-  const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduzido = movimentoReduzido();
   const tela = document.createElement('canvas');
   tela.className = 'toy-tela';
   el.append(tela);

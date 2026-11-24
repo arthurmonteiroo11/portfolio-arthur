@@ -149,6 +149,14 @@
     }
   }
 
+  :root[data-animacoes] .toy-celular {
+    transition: transform 0.55s var(--ease-saida), filter 0.55s var(--ease-saida);
+  }
+
+  :root[data-animacoes] .toy-pilha {
+    transition: transform 0.2s ease-out;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     .toy-celular {
       transition: transform 0.55s var(--ease-saida), filter 0.55s var(--ease-saida);
